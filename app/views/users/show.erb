@@ -1,0 +1,11 @@
+<h1> User Profile Page</h2>
+<p><b>Username:</b> <%= @user.username %> </p>
+ <p><b> Email:</b> <%= @user.email %></p>
+Tweets: 
+<% @user.tweets.each do |tweet| %>
+    <%= tweet.content %>
+<% end %>
+ 
+
+
+

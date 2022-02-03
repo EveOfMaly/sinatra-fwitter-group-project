@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
     get "/users/:slug" do 
        @user =  User.find_by_slug(params[:slug])
-        erb :"users/show"
+        erb :'users/show'
     end
 
 
@@ -16,18 +16,17 @@ class UsersController < ApplicationController
     end
     
     post '/signup' do 
-        user = User.new(username: params[:username], email: params[:email], password: params[:password])
-        
-        if !logged_in? && !params.values.include?("") 
-            user.save
-            redirect "/tweets"
-        else
-            redirect "/signup"
-        end
+        if params[:username] == "" || params[:email] == "" || params[:password] == ""
+            redirect to '/signup'
+          else
+        @user = User.new(username: params[:username], email: params[:email], password: params[:password])
+        @user.save
+        session[:user_id] = @user.id
+        redirect '/tweets'
+       end
     end
 
     get '/login' do 
-        
         if !logged_in? 
             erb :'users/login'
         else
@@ -48,13 +47,12 @@ class UsersController < ApplicationController
 
     
     get '/logout' do 
-        if !logged_in?
-            redirect "/index"
-        else
-            session.clear 
+        if logged_in?
+            session.destroy 
             redirect "/login"
+        else
+            redirect "/"
         end
     end
-
 
 end

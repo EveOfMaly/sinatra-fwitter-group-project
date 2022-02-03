@@ -1,3 +1,6 @@
 User.create(username: "Kim", email: "kimkim@gmail.com", password: "kiki")
 User.create(username: "Johm", email: "john@test.com", password: "johnpass")
 User.create(username: "James", email: "james@gmail.com", password: "jamespass")
+Tweet.create(content: "I think ETH is undervalued by 4x - and here’s the math that shows why.", user_id: 1)
+Tweet.create(content: "Ok, this is an overreaction. time to buy Facebook.", user_id: 2)
+Tweet.create(content: "I've begun listening to opera while I code ", user_id: 2)
